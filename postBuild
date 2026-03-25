@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+# Clone CRPropa3 v3.2.1
+git clone --depth 1 --branch v3.2.1 https://github.com/CRPropa/CRPropa3.git /tmp/CRPropa3
+
+# Build and install
+mkdir /tmp/CRPropa3/build
+cd /tmp/CRPropa3/build
+
+cmake .. \
+    -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
+    -DENABLE_PYTHON=ON \
+    -DENABLE_SWIG_BUILTIN=ON \
+    -DENABLE_FFTW3F=ON \
+    -DENABLE_HDF5=ON \
+    -DDOWNLOAD_DATA=ON
+
+make -j$(nproc)
+make install
+
+# Cleanup source and build files to keep image size down
+rm -rf /tmp/CRPropa3
