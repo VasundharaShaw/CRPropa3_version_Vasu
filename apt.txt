@@ -1,0 +1,10 @@
+build-essential
+cmake
+git
+pkg-config
+swig
+libfftw3-dev
+libfftw3-single3
+libhdf5-dev
+libmuparser-dev
+zlib1g-dev
