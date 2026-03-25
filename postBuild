@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# Clone CRPropa3 3.2.1 (tag is 3.2.1, not v3.2.1)
+# Clone CRPropa3 3.2.1
 git clone --depth 1 --branch 3.2.1 https://github.com/CRPropa/CRPropa3.git /tmp/CRPropa3
 
 # Build and install
@@ -9,7 +9,7 @@ mkdir /tmp/CRPropa3/build
 cd /tmp/CRPropa3/build
 
 cmake .. \
-    -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
+    -DCMAKE_INSTALL_PREFIX=$HOME/.local \
     -DENABLE_PYTHON=ON \
     -DENABLE_SWIG_BUILTIN=ON \
     -DENABLE_FFTW3F=ON \
