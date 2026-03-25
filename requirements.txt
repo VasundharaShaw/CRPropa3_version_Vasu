@@ -8,3 +8,12 @@ libfftw3-single3
 libhdf5-dev
 libmuparser-dev
 zlib1g-dev
+numpy
+scipy
+matplotlib
+healpy
+astropy
+pandas
+h5py
+jupyterlab
+crdb
