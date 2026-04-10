@@ -21,3 +21,20 @@ make install
 
 # Cleanup source and build files to keep image size down
 rm -rf /tmp/CRPropa3
+
+# Move repo contents into a CRPropa/ subfolder so JupyterLab opens cleanly
+mkdir -p $HOME/CRPropa
+shopt -s dotglob
+for item in $HOME/*; do
+    [ "$(basename "$item")" = "CRPropa" ] && continue
+    [ "$(basename "$item")" = ".local" ] && continue
+    [ "$(basename "$item")" = ".jupyter" ] && continue
+    mv "$item" $HOME/CRPropa/
+done
+shopt -u dotglob
+
+# Set JupyterLab to open in the CRPropa folder
+mkdir -p $HOME/.jupyter
+cat >> $HOME/.jupyter/jupyter_notebook_config.py << 'EOF'
+c.ServerApp.root_dir = '/home/jovyan/CRPropa'
+EOF
